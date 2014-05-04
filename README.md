@@ -9,6 +9,8 @@ function OWMshowSearch() //show the search box and buttons from solsticeweather.
 
 function OWMshowForecast() //show the 5-day forecast
 
+function OWMshowBasicMap() //show the current map
+
 function OWMshowCurrentConditions() //show the current conditions
 
 One HTML element needs to have onload="OWMinit()" or the script will never run.  The function can be called with paramters: OWMinit(useGeoIP, searchBox).

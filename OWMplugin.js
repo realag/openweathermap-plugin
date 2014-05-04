@@ -28,6 +28,7 @@ function updateOpenWeatherMapData(searchterm) {
 function updateOpenWeatherMapCurrentData(searchterm) {
 	var apiCurrentURL = "http://api.openweathermap.org/data/2.5/weather?"+searchterm;
   	var currentWeatherData = getJsonObject(apiCurrentURL);
+  	//console.log(currentWeatherData);
   	var temp = (currentWeatherData.main.temp).toFixed(1); //convert from Kelvin and round
   	var setIcon = "<img src=\"http://openweathermap.org/img/w/"+currentWeatherData.weather[0].icon+".png\">";
 	$('.owm-LocalTempurature').text(temp);
@@ -43,13 +44,18 @@ function updateOpenWeatherMapForecastData(searchterm) {
 	var temp;
 	var i = 0;
 	var j = 0;
+	var days = 5;
 	
-	var apiForecastURL = "http://api.openweathermap.org/data/2.5/forecast/daily?"+searchterm+"&cnt=5";
+	if( $('.omw-fourteenday-forecast-container').length ) {
+		days = 14;
+	}
+	
+	var apiForecastURL = "http://api.openweathermap.org/data/2.5/forecast/daily?"+searchterm+"&cnt="+days;
   	var forecastWeatherData = getJsonObject(apiForecastURL);
-	//console.log(forecastWeatherData);
+	console.log(forecastWeatherData);
 	//console.log(forecastWeatherData.list[0]);
 
-	while(i<5) {
+	while(i < days) {
 		var dateStamp = forecastWeatherData.list[i].dt;
 		var headingText = getWeatherDate(dateStamp);
 		var icon = forecastWeatherData.list[i].weather[0].icon;
