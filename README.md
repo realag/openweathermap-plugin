@@ -7,7 +7,9 @@ function OWMsetCity($searchterm) //set the city
 
 function OWMshowSearch() //show the search box and buttons from solsticeweather.com
 
-function OWMshowForecast() //show the 5-day forecast
+function OWMshowFiveDayForecast() //show the 5-day forecast
+
+function OWMshowFourteenDayForecast() //show the 14-day forecast
 
 function OWMshowBasicMap() //show the current map
 
