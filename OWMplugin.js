@@ -52,7 +52,7 @@ function updateOpenWeatherMapForecastData(searchterm) {
 	
 	var apiForecastURL = "http://api.openweathermap.org/data/2.5/forecast/daily?"+searchterm+"&cnt="+days;
   	var forecastWeatherData = getJsonObject(apiForecastURL);
-	console.log(forecastWeatherData);
+	//console.log(forecastWeatherData);
 	//console.log(forecastWeatherData.list[0]);
 
 	while(i < days) {
