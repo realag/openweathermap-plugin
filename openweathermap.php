@@ -11,6 +11,7 @@ Author URI: http://www.solsticeweather.com
 add_action('init','OWMLoadJavascript');
 
 function OWMLoadJavascript() {
+	wp_deregister_script( 'jquery' ); //we require jQuery 2.1.0 or greater
 	wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js');
 	wp_register_script( 'openlayers', 'http://openlayers.org/api/2.13/OpenLayers.js');
 	wp_register_script( 'openweathermap', 'http://openweathermap.org/js/OWM.OpenLayers.1.3.6.js');
@@ -23,24 +24,29 @@ function OWMLoadJavascript() {
 	wp_enqueue_script('OWMplugin-js',plugin_dir_url( __FILE__ ) . '/OWMplugin.js');
 	wp_enqueue_script('OWMinit-js',plugin_dir_url( __FILE__ ) . '/OWMinit.js');
 }
-function OWMsetCity($searchterm) {
+function OWMsetCity($atts) {
+	@extract($atts);
+	$searchterm;
+	$searchtemp;
 	echo "<div hidden id=\"owm-city-search-term\" class=\"owm-city-search-term\">$searchterm</div>";
+	echo "<div hidden id=\"owm-city-search-temp\" class=\"owm-city-search-temp\">$searchtemp</div>";
+	
 }
 function OWMshowSearch() {
 ?>
-<span class="solstice-text pull-left">Search for a City</span><br>
+<span class="owm-text pull-left">Search for a City</span><br>
 			<span style="width:40%;" class="form-group pull-left">
 				<input type="text" id="owm-city-search-term" class="form-control owm-city-search-term" value="San Francisco, CA">
 			</span>
 			<button type="submit" class="btn city-search-btn" OnClick="newSearch()">Search</button>&nbsp
-			<input type="radio" name="searchUnits" value="metric" OnClick="citySearch()"><span class="solstice-text">&deg;C&nbsp</span>
-			<input type="radio" name="searchUnits" value="imperial" class="active" OnClick="citySearch()" checked><span class="solstice-text">&deg;F</span>
+			<input type="radio" name="searchUnits" value="metric" OnClick="citySearch()"><span class="owm-text">&deg;C&nbsp</span>
+			<input type="radio" name="searchUnits" value="imperial" class="active" OnClick="citySearch()" checked><span class="owm-text">&deg;F</span>
 <?php	
 }
 function OWMshowBasicMap() {
 	echo '	<div id="owm-basicMap" class="owm-basicMap pull-left" style="width:50%; height:275px"></div>
 	<div style="width:100%;">
-		      	<span id="animateLink" class="animateLink pull-right solstice-link"><a href="javascript:void(0)" onclick="startAnimateMap(map)">animate Nexrad</a></span>
+		      	<span id="animateLink" class="animateLink pull-right owm-link"><a href="javascript:void(0)" onclick="startAnimateMap(map)">animate Nexrad</a></span>
 	      	</div>';
 }
 function OWMshowCurrentConditions() {
@@ -64,7 +70,7 @@ function OWMshowFiveDayForecast() {
 	while($i < 6) {
 ?>
 	        	 <div style="width:20%;" class="pull-left">
-		          <div class="solstice-heading owm-forecast-<?php echo $i ?> owm-forecast-<?php echo $i ?>-heading"></div>
+		          <div class="owm-heading owm-forecast-<?php echo $i ?> owm-forecast-<?php echo $i ?>-heading"></div>
 		          <div class="owm-forecast owm-forecast-<?php echo $i ?>">
 		          		<div style="align:center; display:block; margin:0 auto;" class="owm-forecast-<?php echo $i ?>-icon"></div>
 		          		<div>
@@ -94,7 +100,7 @@ function OWMshowFourteenDayForecast() {
 		}
 ?>
 	        	 <div style="width:20%;" class="pull-left">
-		          <div class="solstice-heading owm-forecast-<?php echo $i ?> owm-forecast-<?php echo $i ?>-heading"></div>
+		          <div class="owm-heading owm-forecast-<?php echo $i ?> owm-forecast-<?php echo $i ?>-heading"></div>
 		          <div class="owm-forecast owm-forecast-<?php echo $i ?>">
 		          		<div style="align:center; display:block; margin:0 auto;" class="owm-forecast-<?php echo $i ?>-icon"></div>
 		          		<div>
@@ -114,4 +120,26 @@ function OWMshowFourteenDayForecast() {
 			</div>
 <?php
 }
+
+function OWMinitScript($atts) {
+	@extract($atts);
+	$usegeoip;
+	$searchbox;
+	
+	if ($useGeoIP !== false) {
+		$useGeoIP = true;
+	}
+	if ($searchbox == '') {
+		$searchbox = ".owm-city-search-term";
+	}
+	echo '<script>$(window).load(OWMinit('.$usegeoip.', "'.$searchbox.'"));</script>';
+}
+
+add_shortcode('OWMsetCity', 'OWMsetCity');
+add_shortcode('OWMshowSearch', 'OWMshowSearch');
+add_shortcode('OWMshowFiveDayForecast', 'OWMshowFiveDayForecast');
+add_shortcode('OWMshowFourteenDayForecast', 'OWMshowFourteenDayForecast');
+add_shortcode('OWMshowBasicMap', 'OWMshowBasicMap');
+add_shortcode('OWMshowCurrentConditions', 'OWMshowCurrentConditions');
+add_shortcode('OWMinitScript', 'OWMinitScript');
 ?>

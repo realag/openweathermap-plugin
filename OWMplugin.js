@@ -28,7 +28,7 @@ function updateOpenWeatherMapData(searchterm) {
 function updateOpenWeatherMapCurrentData(searchterm) {
 	var apiCurrentURL = "http://api.openweathermap.org/data/2.5/weather?"+searchterm;
   	var currentWeatherData = getJsonObject(apiCurrentURL);
-  	//console.log(currentWeatherData);
+  	//console.log(apiCurrentURL);
   	var temp = (currentWeatherData.main.temp).toFixed(1); //convert from Kelvin and round
   	var setIcon = "<img src=\"http://openweathermap.org/img/w/"+currentWeatherData.weather[0].icon+".png\">";
 	$('.owm-LocalTempurature').text(temp);
@@ -80,6 +80,14 @@ function updateOpenWeatherMapForecastData(searchterm) {
 function citySearch() {
 	var searchField = $('.owm-city-search-term').val();
 	var searchUnits = $('input[name="searchUnits"]:checked').val();
+	
+	if(searchField == '') {
+		searchField = $('.owm-city-search-term').text();
+	}
+	if(searchUnits == undefined) {
+		searchUnits = $('.owm-city-search-temp').text();
+	}
+	//console.log(searchField);
 
 	setUnits(searchUnits);
 	searchTerm(searchField,searchUnits);
