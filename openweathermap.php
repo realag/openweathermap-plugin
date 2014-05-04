@@ -10,10 +10,7 @@ Author URI: http://www.solsticeweather.com
 
 add_action('init','OWMLoadJavascript');
 
-$themepath = get_template_directory_uri() . "/";
-
-function OWMLoadJavascript($themepath) {
-	wp_deregister_script( 'jquery' );
+function OWMLoadJavascript() {
 	wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js');
 	wp_register_script( 'openlayers', 'http://openlayers.org/api/2.13/OpenLayers.js');
 	wp_register_script( 'openweathermap', 'http://openweathermap.org/js/OWM.OpenLayers.1.3.6.js');
@@ -24,6 +21,10 @@ function OWMLoadJavascript($themepath) {
 	wp_enqueue_script('openweathermap');
 	wp_enqueue_script('googlemaps');
 	wp_enqueue_script('OWMplugin-js',plugin_dir_url( __FILE__ ) . '/OWMplugin.js');
+	wp_enqueue_script('OWMinit-js',plugin_dir_url( __FILE__ ) . '/OWMinit.js');
+}
+function OWMsetCity($searchterm) {
+	echo "<div hidden id=\"owm-city-search-term\" class=\"owm-city-search-term\">$searchterm</div>";
 }
 function OWMshowSearch() {
 ?>
@@ -36,6 +37,7 @@ function OWMshowSearch() {
 			<input type="radio" name="searchUnits" value="imperial" class="active" OnClick="citySearch()" checked><span class="solstice-text">&deg;F</span>
 <?php	
 }
+
 function OWMshowCurrentConditions() {
 ?>
 <div class="owm-current-conditions omw-center">
@@ -72,37 +74,6 @@ function OWMshowForecast() {
 	}
 ?>
 			</div>
-<?php
-}
-
-function OWMjavascriptLoop() {
-?>
-	<script>
-		var map;
-  		function init() {
-	  		$('.owm-city-search-term').val(getLocationText());
-	  		$('.owm-city-search-term').bind("enterKey",function(e){
-			   newSearch();
-			   citySearch();
-			});
-			$('.owm-city-search-term').keyup(function(e){
-			    if(e.keyCode == 13)
-			    {
-			        $(this).trigger("enterKey");
-			    }
-			});
-			citySearch();
-			map = makeMap();
-			setInterval(function(){ 
-			    citySearch();
-			    updateMap(map);
-			}, 300000);
-		}
-		function newSearch() {
-			citySearch();
-			map = makeMap();
-		}
-	</script>
 <?php
 }
 ?>
