@@ -27,3 +27,10 @@ OWMinitScript is required or the script will never run. The function/shortcode c
 Defaults:
 UseGeoIP = true;
 searchBox = ".owm-city-search-term";
+
+
+EXAMPLE:
+
+[OWMsetCity   searchterm='Fort Myers, FL' searchtemp='Imperial']
+[OWMshowCurrentConditions]
+[OWMinitScript  useGeoIP='false']
