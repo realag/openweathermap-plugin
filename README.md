@@ -19,7 +19,7 @@ Short Codes:
 [OWMshowBasicMap] //show the current map
 [OWMshowFiveDayForecast] //show the 5-day forecast
 [OWMshowFourteenDayForecast] //show the 14-day forecast
-[OWMinitScript useGeoIP='true' searchBox='.owm-city-search-term'] //run the init script
+[OWMinitScript usegeoip='true' searchbox='.owm-city-search-term'] //run the init script
 
 
 OWMinitScript is required or the script will never run. The function/shortcode can be called with parameters or with out.
