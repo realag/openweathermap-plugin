@@ -128,9 +128,16 @@ function OWMinitScript($atts) {
 	$usegeoip;
 	$searchbox;
 	
-	if ($useGeoIP !== false) {
-		$useGeoIP = true;
+	if($usegeoip === 'false') {
+		$usegeoip = 0;
 	}
+	elseif ($usegeoip === 'true') {
+		$usegeoip = 1;
+	}
+	else {
+		$usegeoip = 0;
+	}
+	
 	if ($searchbox == '') {
 		$searchbox = ".owm-city-search-term";
 	}

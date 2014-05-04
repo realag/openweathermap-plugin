@@ -1,13 +1,15 @@
 var map;
 
 function OWMinit(useGeoIP, searchBox) {
+	searchBox = searchBox || ".owm-city-search-term";
+	
 	if(useGeoIP == true) {
-		$(".owm-city-search-term").val(getLocationText());
-		$(".owm-city-search-term").bind("enterKey",function(e){
+		$(searchBox).val(getLocationText());
+		$(searchBox).bind("enterKey",function(e){
 			newSearch();
 			citySearch();
 		});
-		$(".owm-city-search-term").keyup(function(e){
+		$(searchBox).keyup(function(e){
 			if(e.keyCode == 13) {
 				$(this).trigger("enterKey");
 			}
