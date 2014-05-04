@@ -87,6 +87,9 @@ function citySearch() {
 	if(searchUnits == undefined) {
 		searchUnits = $('.owm-city-search-temp').text();
 	}
+	if(searchUnits == '') {
+		searchUnits = 'metric';
+	}
 	//console.log(searchField);
 
 	setUnits(searchUnits);

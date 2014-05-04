@@ -28,6 +28,8 @@ function OWMsetCity($atts) {
 	@extract($atts);
 	$searchterm;
 	$searchtemp;
+	
+	$searchtemp = strtolower($searchtemp);
 	echo "<div hidden id=\"owm-city-search-term\" class=\"owm-city-search-term\">$searchterm</div>";
 	echo "<div hidden id=\"owm-city-search-temp\" class=\"owm-city-search-temp\">$searchtemp</div>";
 	
