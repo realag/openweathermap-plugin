@@ -18,4 +18,9 @@ function OWMshowBasicMap() //show the current map
 function OWMshowCurrentConditions() //show the current conditions
 
 
-One HTML element needs to have onload="OWMinit()" or the script will never run.  The function can be called with paramters: OWMinit(useGeoIP, searchBox).
+One HTML element needs to have onload="OWMinit()" or the script will never run. The function can be called with parameters or with out.
+
+Defaults:
+UseGeoIP = true;
+searchBox = ".owm-city-search-term";
+onload="OWMinit(useGeoIP, searchBox)"
