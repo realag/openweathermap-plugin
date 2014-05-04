@@ -5,17 +5,12 @@ A wordpress plugin for displaying current conditions, current weather map, and l
 
 PHP Functions:
 
-function OWMsetCity($searchterm) //set the city
-
-function OWMshowSearch() //show the search box and buttons from http://solsticeweather.com
-
-function OWMshowFiveDayForecast() //show the 5-day forecast
-
-function OWMshowFourteenDayForecast() //show the 14-day forecast
-
-function OWMshowBasicMap() //show the current map
-
-function OWMshowCurrentConditions() //show the current conditions
+OWMsetCity($searchterm) //set the city
+OWMshowSearch() //show the search box and buttons from http://solsticeweather.com
+OWMshowFiveDayForecast() //show the 5-day forecast
+OWMshowFourteenDayForecast() //show the 14-day forecast
+OWMshowBasicMap() //show the current map
+OWMshowCurrentConditions() //show the current conditions
 
 
 One HTML element needs to have onload="OWMinit()" or the script will never run. The function can be called with parameters or with out.
