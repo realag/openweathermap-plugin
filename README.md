@@ -7,7 +7,7 @@ PHP Functions:
 
 function OWMsetCity($searchterm) //set the city
 
-function OWMshowSearch() //show the search box and buttons from solsticeweather.com
+function OWMshowSearch() //show the search box and buttons from http://solsticeweather.com
 
 function OWMshowFiveDayForecast() //show the 5-day forecast
 
