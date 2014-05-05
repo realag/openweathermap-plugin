@@ -71,7 +71,7 @@ function OWMshowFiveDayForecast() {
 	$i = 1;
 	while($i < 6) {
 ?>
-	        	 <div style="width:20%;" class="pull-left">
+	        	 <div style="width:20%;" class="pull-left omw-forecast-container">
 		          <div class="owm-heading owm-forecast-<?php echo $i ?> owm-forecast-<?php echo $i ?>-heading"></div>
 		          <div class="owm-forecast owm-forecast-<?php echo $i ?>">
 		          		<div style="align:center; display:block; margin:0 auto;" class="owm-forecast-<?php echo $i ?>-icon"></div>
@@ -101,7 +101,7 @@ function OWMshowFourteenDayForecast() {
 			echo "<div>";
 		}
 ?>
-	        	 <div style="width:20%;" class="pull-left">
+	        	 <div style="width:20%;" class="pull-left omw-forecast-container">
 		          <div class="owm-heading owm-forecast-<?php echo $i ?> owm-forecast-<?php echo $i ?>-heading"></div>
 		          <div class="owm-forecast owm-forecast-<?php echo $i ?>">
 		          		<div style="align:center; display:block; margin:0 auto;" class="owm-forecast-<?php echo $i ?>-icon"></div>
@@ -114,7 +114,8 @@ function OWMshowFourteenDayForecast() {
 	          </div>
 <?php 
 		if(($i % 5) == 0) {
-			echo "</div>";
+			echo "</div>
+				      <div class=\"row\"></div><br>";
 		}
 		$i++;
 	}
@@ -141,7 +142,7 @@ function OWMinitScript($atts) {
 	if ($searchbox == '') {
 		$searchbox = ".owm-city-search-term";
 	}
-	echo '<script>$(window).load(OWMinit('.$usegeoip.', "'.$searchbox.'"));</script>';
+	echo '<script>$(document).ready(OWMinit('.$usegeoip.', "'.$searchbox.'"));</script>';
 }
 
 add_shortcode('OWMsetCity', 'OWMsetCity');
