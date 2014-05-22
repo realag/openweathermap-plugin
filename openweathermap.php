@@ -4,6 +4,7 @@ Plugin Name: Open Weather Map
 Plugin URI: http://www.solsticeweather.com
 Description: Plugin for displaying current conditions, current weather map, and local forecasts from http://openweathermap.org/.
 Author: Joshua Rising
+License: MIT
 Version: 1.0
 Author URI: http://www.solsticeweather.com
 */
