@@ -6,7 +6,7 @@ Description: Plugin for displaying current conditions, current weather map, and 
 Author: Joshua Rising
 License: GPL3
 Copy Right: 2014 Joshua Rising, Rogue Valley Software
-Version: 1.0
+Version: 1.01
 Author URI: http://www.solsticeweather.com
 */
 
@@ -14,15 +14,11 @@ add_action('init','OWMLoadJavascript');
 
 function OWMLoadJavascript() {
 	wp_deregister_script( 'jquery' ); //we require jQuery 2.1.0 or greater
-	wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js');
-	wp_register_script( 'openlayers', 'http://openlayers.org/api/2.13/OpenLayers.js');
-	wp_register_script( 'openweathermap', 'http://openweathermap.org/js/OWM.OpenLayers.1.3.6.js');
-	wp_register_script( 'googlemaps', 'http://maps.google.com/maps/api/js?v=3.2&sensor=false');
+	wp_enqueue_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js');
+	wp_enqueue_script( 'openlayers', '//openlayers.org/api/2.13.1/OpenLayers.js');
+	wp_enqueue_script( 'openweathermap', '//openweathermap.org/js/OWM.OpenLayers.1.3.6.js');
+	wp_enqueue_script( 'googlemaps', '//maps.google.com/maps/api/js?v=3.16&sensor=false');
 	
-	wp_enqueue_script('jquery');
-	wp_enqueue_script('openlayers');
-	wp_enqueue_script('openweathermap');
-	wp_enqueue_script('googlemaps');
 	wp_enqueue_script('OWMplugin-js',plugin_dir_url( __FILE__ ) . '/OWMplugin.js');
 	wp_enqueue_script('OWMinit-js',plugin_dir_url( __FILE__ ) . '/OWMinit.js');
 }
