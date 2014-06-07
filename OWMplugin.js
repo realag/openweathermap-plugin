@@ -55,7 +55,7 @@ function updateOpenWeatherMapForecastData(searchterm) {
 	//console.log(forecastWeatherData);
 	//console.log(forecastWeatherData.list[0]);
 
-	while(i < days) {
+	while(i < forecastWeatherData.cnt) {
 		var dateStamp = forecastWeatherData.list[i].dt;
 		var headingText = getWeatherDate(dateStamp);
 		var icon = forecastWeatherData.list[i].weather[0].icon;
@@ -121,6 +121,7 @@ function getWeatherDate(thisDate) {
 function searchTerm(userSearchTerm,units) {
 	var res = encodeURIComponent(userSearchTerm);
 	var searchterm = "q="+res+"&units="+units;
+	//console.log(searchterm);
 
 	updateOpenWeatherMapData(searchterm);
 }
@@ -399,6 +400,8 @@ function makeMap(mapsize) {
 	else {
 		aLayers = [ghybrid, n0q, rain, radar, clouds];
 	}
+	
+	//console.log(aLayers);
 	
 	aLayersLength = aLayers.length;
 	 
