@@ -10,16 +10,16 @@ function pad (str, max) {
   return str.length < max ? pad("0" + str, max) : str;
 }
 function getJsonObject(apiURL) {
-  		$.ajaxSetup({
-		async: false
+  	$.ajaxSetup({
+		async: true
 	});
 	
-	var globalJsonVar;
+	var jsonObject;
 	$.getJSON(apiURL,function(json){
-		globalJsonVar = json;
+		jsonObject = json;
 	});
 	
-	return globalJsonVar;
+	return jsonObject;
 }
 function updateOpenWeatherMapData(searchterm) {
 	updateOpenWeatherMapCurrentData(searchterm);
