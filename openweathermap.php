@@ -91,15 +91,12 @@ function OWMshowFiveDayForecast() {
 function OWMshowFourteenDayForecast() {
 ?>
 	      <div class="omw-fourteenday-forecast-container">
-		
+	      	<div class="row">
 <?php
 	$i = 1;
 	while($i < 15) {
-		if(($i % 5) == 0) {
-			echo "<div>";
-		}
 ?>
-	        	 <div style="width:20%;" class="pull-left omw-forecast-container">
+	        	 <div class="pull-left omw-forecast-container">
 		          <div class="owm-heading owm-forecast-<?php echo $i ?> owm-forecast-<?php echo $i ?>-heading"></div>
 		          <div class="owm-forecast owm-forecast-<?php echo $i ?>">
 		          		<div style="align:center; display:block; margin:0 auto;" class="owm-forecast-<?php echo $i ?>-icon"></div>
@@ -111,9 +108,12 @@ function OWMshowFourteenDayForecast() {
 		          </div>
 	          </div>
 <?php 
-		if(($i % 5) == 0) {
-			echo "</div>
-				      <div class=\"row\"></div><br>";
+		if($i == 5 || $i == 10) {
+			echo "				</div>
+				<div class=\"row\">\n";
+		}
+		if($i == 15) {
+			echo "				</div>\n";
 		}
 		$i++;
 	}
