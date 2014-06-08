@@ -11,7 +11,7 @@ function pad (str, max) {
 }
 function getJsonObject(apiURL) {
   	$.ajaxSetup({
-		async: true
+		async: false
 	});
 	
 	var jsonObject;
