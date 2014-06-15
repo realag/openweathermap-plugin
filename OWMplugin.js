@@ -127,14 +127,14 @@ function searchTerm(userSearchTerm,units) {
 }
 function getLocationText() {
 	//console.log(locationData);
-	var locationText = locationData.city+", "+locationData.region_code;
+	var locationText = locationData.city+", "+locationData.region;
 	//console.log(locationText);
 	return locationText;
 }
 function getLocationData() {
-	var apiCurrentURL = "https://freegeoip.net/json/";
+	var apiCurrentURL = "http://ip-api.com/json";
 	locationData = getJsonObject(apiCurrentURL);
-	setLonLat(locationData.longitude,locationData.latitude);
+	setLonLat(locationData.lon,locationData.lat);
 	//console.log(locationData);
 	
 	return locationData;
