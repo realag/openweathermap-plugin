@@ -110,7 +110,7 @@ function setUnits(units) {
 }
 function getWeatherDate(thisDate) {
 	var daysOfTheWeek = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-	var monthsOfTheYear = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Oct","Nov","Dec"];
+	var monthsOfTheYear = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sept","Oct","Nov","Dec"];
 	var weatherDate = new Date(thisDate*1000);
 	var weatherYear = weatherDate.getYear()+1900;
 	var formattedDate = daysOfTheWeek[weatherDate.getDay()]+", "+monthsOfTheYear[weatherDate.getMonth()]+", "+weatherDate.getDate()+" "+weatherYear;
